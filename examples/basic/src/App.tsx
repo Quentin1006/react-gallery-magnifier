@@ -1,9 +1,4 @@
-import {
-  version,
-  Title,
-  ImageMagnifier,
-  GalleryImage,
-} from 'react-image-magnifier';
+import { version, ImageMagnifier, GalleryImage } from 'react-image-magnifier';
 
 export const App = () => {
   const gallery: GalleryImage[] = [
@@ -53,7 +48,7 @@ export const App = () => {
 
   return (
     <div style={{ maxWidth: '1270px', margin: 'auto' }}>
-      <Title />
+      {/* <Title /> */}
       <div>Version: {version}</div>
       <div style={{ display: 'flex' }}>
         <div style={{ flexGrow: 0, paddingLeft: '20px' }}>
