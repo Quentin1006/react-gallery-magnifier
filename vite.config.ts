@@ -1,23 +1,27 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import dts from 'vite-plugin-dts';
 import { glob } from 'glob';
 import { fileURLToPath } from 'node:url';
-import { extname, relative, resolve } from 'path';
+import { extname, relative } from 'path';
 
+const testFile = /(\.spec|tests?\/)/;
 const input = Object.fromEntries(
-  glob.sync('src/**/*.{ts,tsx}').map(file => [
-    // The name of the entry point
-    // src/nested/foo.ts becomes nested/foo
-    relative('src', file.slice(0, file.length - extname(file).length)),
-    // The absolute path to the entry file
-    // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-    fileURLToPath(new URL(file, import.meta.url)),
-  ])
+  glob
+    .sync('src/**/*.{ts,tsx}')
+    .filter(file => !file.match(testFile))
+    .map(file => [
+      // The name of the entry point
+      // src/nested/foo.ts becomes nested/foo
+      relative('src', file.slice(0, file.length - extname(file).length)),
+      // The absolute path to the entry file
+      // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
+      fileURLToPath(new URL(file, import.meta.url)),
+    ])
 );
 
-console.log({ input });
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), dts(), libInjectCss()],
@@ -27,6 +31,7 @@ export default defineConfig({
       entry: 'src/index.tsx', // Assuming your entrypoint file is src/index.js
       name: 'ReactImageMagnfier',
       formats: ['es'],
+      fileName: 'index',
     },
     rollupOptions: {
       input,
@@ -39,5 +44,9 @@ export default defineConfig({
     },
     sourcemap: true,
     outDir: 'lib',
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/tests/setup.ts',
   },
 });

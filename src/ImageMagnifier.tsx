@@ -33,30 +33,29 @@ function toPercent(val: number, max: number) {
   return `${(val / max) * 100}%`;
 }
 
-function getLeft(clientX: number, totalWidth: number, width: number) {
+function getLeft(clientX: number, parentRect: DOMRect, width: number) {
   // zoom area will be too far on the right
-  if (clientX + width / 2 >= totalWidth) {
-    return totalWidth - width;
+  if (clientX + width / 2 >= parentRect.width + parentRect.x) {
+    return parentRect.width - width;
   }
   // zoom area will be too far on the left
-  if (clientX - width / 2 <= 0) {
+  if (clientX - parentRect.x - width / 2 <= 0) {
     return 0;
   }
-
-  return clientX - width / 2;
+  return clientX - parentRect.x - width / 2;
 }
 
-function getTop(clientY: number, totalHeight: number, height: number) {
+function getTop(clientY: number, parentRect: DOMRect, height: number) {
   // zoom area will be beneath the bottom
-  if (clientY + height / 2 >= totalHeight) {
-    return totalHeight - height;
-  }
-  // zoom area will be above the top
-  if (clientY - height / 2 <= 0) {
-    return 0;
+  if (clientY + height / 2 >= parentRect.height + parentRect.y) {
+    return parentRect.height - height;
   }
 
-  return clientY - height / 2;
+  // zoom area will be above the top
+  if (clientY - parentRect.y - height / 2 <= 0) {
+    return 0;
+  }
+  return clientY - parentRect.y - height / 2;
 }
 
 export type ImageMagnifierProps = {
@@ -100,11 +99,14 @@ export function ImageMagnifier({
     const WRAPPER_RECT = wrapperRef.current?.getBoundingClientRect();
     const MAGNIFIER_WIDTH = WRAPPER_RECT?.width / ZOOM;
     const MAGNIFIER_HEIGHT = WRAPPER_RECT?.height / ZOOM;
-    // console.log(WRAPPER_RECT);
-    // console.log({ clientX: e.clientX, clientY: e.clientY });
-    // console.log(zoomRef.current.getBoundingClientRect());
-    const left = getLeft(e.clientX, WRAPPER_RECT.width, MAGNIFIER_WIDTH);
-    const top = getTop(e.clientY, WRAPPER_RECT.height, MAGNIFIER_HEIGHT);
+    console.log(WRAPPER_RECT);
+    console.log({ clientX: e.clientX, clientY: e.clientY });
+    console.log(
+      'zoomMagnifierRef :',
+      zoomMagnifierRef.current.getBoundingClientRect()
+    );
+    const left = getLeft(e.clientX, WRAPPER_RECT, MAGNIFIER_WIDTH);
+    const top = getTop(e.clientY, WRAPPER_RECT, MAGNIFIER_HEIGHT);
 
     const right = left + MAGNIFIER_WIDTH;
     const bottom = top + MAGNIFIER_HEIGHT;
