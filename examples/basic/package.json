@@ -6,12 +6,13 @@
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-image-magnifier": "file:../.."
+    "react-image-magnifier": "latest"
   },
   "scripts": {
     "analyze": "vite-bundle-visualizer",
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
