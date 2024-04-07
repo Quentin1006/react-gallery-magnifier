@@ -1,1 +1,1 @@
-export const version = '1.2.3';
+export const version = process.env.__LIB_VERSION__;
