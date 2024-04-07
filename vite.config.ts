@@ -5,7 +5,7 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import dts from 'vite-plugin-dts';
 import { glob } from 'glob';
 import { fileURLToPath } from 'node:url';
-import { extname, relative } from 'path';
+import { extname, relative } from 'node:path';
 import pkg from './package.json';
 
 // Should ignore dev.tsx, .spec.tsx, .test.tsx, tests/, .d.ts
@@ -38,6 +38,7 @@ export default defineConfig(({ command }) => {
     },
     define: {
       'process.env.__LIB_VERSION__': `"${process.env.VERSION ?? pkg.version}"`,
+      'process.env._URL': 'http://localhost:6000',
     },
     test: {
       environment: 'jsdom',

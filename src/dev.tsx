@@ -3,42 +3,36 @@ import { createRoot } from 'react-dom/client';
 
 import { version, GalleryImage, ImageMagnifier, Title } from '.';
 
+
+const assetServerUrl = process.env.ASSET_SERVER_URL;
 const App = () => {
   const gallery: GalleryImage[] = [
     /*{
       thumbnailSrc:
-        'https://m.media-amazon.com/images/I/31laW9Ex46L._AC_SR38,50_.jpg',
-      src: 'https://m.media-amazon.com/images/I/61BGE6iu4AL._AC_SX679_.jpg',
+        `${assetServerUrl}/31laW9Ex46L.38x50.jpg',
+      src: `${assetServerUrl}/61BGE6iu4AL._AC_SX679.jpg`,
       zoomSrc:
-        'https://m.media-amazon.com/images/I/61BGE6iu4AL._AC_SL1500_.jpg',
+        `${assetServerUrl}/61BGE6iu4AL._AC_SL1500.jpg`,
     },*/
     {
-      thumbnailSrc:
-        'https://m.media-amazon.com/images/I/21aP0rDoENL._AC_SR38,50_.jpg',
-      src: 'https://m.media-amazon.com/images/I/51xFCGFuXmL._AC_SX679_.jpg',
-      zoomSrc:
-        'https://m.media-amazon.com/images/I/51xFCGFuXmL._AC_SL1500_.jpg',
+      thumbnailSrc: `${assetServerUrl}/21aP0rDoENL.38x50.jpg`,
+      src: `${assetServerUrl}/51xFCGFuXmL.679.jpg`,
+      zoomSrc: `${assetServerUrl}/51xFCGFuXmL.1500.jpg`,
     },
     {
-      thumbnailSrc:
-        'https://m.media-amazon.com/images/I/51wPzX4RgIL._AC_SR38,50_.jpg',
-      src: 'https://m.media-amazon.com/images/I/81zbhmXq0bL._AC_SX679_.jpg',
-      zoomSrc:
-        'https://m.media-amazon.com/images/I/81zbhmXq0bL._AC_SL1500_.jpg',
+      thumbnailSrc: `${assetServerUrl}/51wPzX4RgIL.38x50.jpg`,
+      src: `${assetServerUrl}/81zbhmXq0bL.679.jpg`,
+      zoomSrc: `${assetServerUrl}/81zbhmXq0bL.1500.jpg`,
     },
     {
-      thumbnailSrc:
-        'https://m.media-amazon.com/images/I/31g2XUsBxwL._AC_SR38,50_.jpg',
-      src: 'https://m.media-amazon.com/images/I/71RFKttvm9L._AC_SX679_.jpg',
-      zoomSrc:
-        'https://m.media-amazon.com/images/I/71RFKttvm9L._AC_SL1500_.jpg',
+      thumbnailSrc: `${assetServerUrl}/31g2XUsBxwL.38x50.jpg`,
+      src: `${assetServerUrl}/71RFKttvm9L.679.jpg`,
+      zoomSrc: `${assetServerUrl}/71RFKttvm9L.1500.jpg`,
     },
     {
-      thumbnailSrc:
-        'https://m.media-amazon.com/images/I/31cMTXVulpL._AC_SR38,50_.jpg',
-      src: 'https://m.media-amazon.com/images/I/61pcLugx4IL._AC_SX679_.jpg',
-      zoomSrc:
-        'https://m.media-amazon.com/images/I/61pcLugx4IL._AC_SL1500_.jpg',
+      thumbnailSrc: `${assetServerUrl}/31cMTXVulpL.38x50.jpg`,
+      src: `${assetServerUrl}/61pcLugx4IL.679.jpg`,
+      zoomSrc: `${assetServerUrl}/61pcLugx4IL.1500.jpg`,
     },
   ];
 
