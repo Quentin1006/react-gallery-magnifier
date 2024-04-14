@@ -1,13 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-// import { App } from './App';
+import { version, Title } from 'react-gallery-magnifier';
 
 const App = () => {
-  return <div>React Gallery Magnifier</div>;
-}
+  return (
+    <>
+      <Title />
+      <div>{version}</div>
+    </>
+  );
+};
 const root = createRoot(document.getElementById('root')!);
-
 root.render(
   <StrictMode>
     <App />

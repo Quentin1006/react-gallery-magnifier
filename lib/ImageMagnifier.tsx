@@ -99,12 +99,12 @@ export function ImageMagnifier({
     const WRAPPER_RECT = wrapperRef.current?.getBoundingClientRect();
     const MAGNIFIER_WIDTH = WRAPPER_RECT?.width / ZOOM;
     const MAGNIFIER_HEIGHT = WRAPPER_RECT?.height / ZOOM;
-    console.log(WRAPPER_RECT);
-    console.log({ clientX: e.clientX, clientY: e.clientY });
-    console.log(
-      'zoomMagnifierRef :',
-      zoomMagnifierRef.current.getBoundingClientRect()
-    );
+    // console.log(WRAPPER_RECT);
+    // console.log({ clientX: e.clientX, clientY: e.clientY });
+    // console.log(
+    //   'zoomMagnifierRef :',
+    //   zoomMagnifierRef.current.getBoundingClientRect()
+    // );
     const left = getLeft(e.clientX, WRAPPER_RECT, MAGNIFIER_WIDTH);
     const top = getTop(e.clientY, WRAPPER_RECT, MAGNIFIER_HEIGHT);
 

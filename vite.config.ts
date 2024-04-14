@@ -9,11 +9,10 @@ import { extname, relative } from 'node:path';
 import pkg from './package.json';
 
 // Should ignore dev.tsx, .spec.tsx, .test.tsx, tests/, .d.ts
-const filesToIgnore = /(\.spec\.|\.test\.|tests?\/|dev\.|\.d\.ts$)/;
-
+const filesToIgnore = /(\.spec\.|\.test\.|tests?\/|\.d\.ts$)/;
 const input = Object.fromEntries(
   glob
-    .sync('src/**/*.{ts,tsx}')
+    .sync('lib/**/*.{ts,tsx}')
     .map(l => {
       console.log(l);
       return l;
@@ -22,7 +21,7 @@ const input = Object.fromEntries(
     .map(file => [
       // The name of the entry point
       // src/nested/foo.ts becomes nested/foo
-      relative('src', file.slice(0, file.length - extname(file).length)),
+      relative('lib', file.slice(0, file.length - extname(file).length)),
       // The absolute path to the entry file
       // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
       fileURLToPath(new URL(file, import.meta.url)),
@@ -31,26 +30,21 @@ const input = Object.fromEntries(
 
 export default defineConfig(({ command }) => {
   const commonConfig: UserConfig = {
-    plugins: [react(), dts(), libInjectCss()],
+    plugins: [react(), dts({ include: ['lib'] }), libInjectCss()],
     build: {
       sourcemap: true,
-      outDir: 'lib',
     },
     define: {
       'process.env.__LIB_VERSION__': `"${process.env.VERSION ?? pkg.version}"`,
-      'process.env._URL': 'http://localhost:6000',
+      'process.env.__ASSET_SERVER_URL__': '"http://localhost:8000"',
     },
     test: {
       environment: 'jsdom',
-      setupFiles: './src/tests/setup.ts',
+      setupFiles: './lib/tests/setup.ts',
     },
   };
   if (command === 'serve') {
-    const serveConfig: UserConfig = {
-      build: {
-        copyPublicDir: false,
-      },
-    };
+    const serveConfig: UserConfig = {};
     return mergeConfig(commonConfig, serveConfig);
   } else {
     // command === 'build'
@@ -67,7 +61,7 @@ export default defineConfig(({ command }) => {
           },
         },
         lib: {
-          entry: 'src/lib.tsx',
+          entry: fileURLToPath(new URL('lib/index.tsx', import.meta.url)),
           name: 'ReactImageMagnfier',
           formats: ['es'],
           fileName: 'index',

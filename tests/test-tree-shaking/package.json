@@ -1,19 +1,14 @@
 {
-  "name": "basic",
+  "name": "test-tree-shaking",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "dependencies": {
     "react": "latest",
-    "react-dom": "latest",
-    "react-gallery-magnifier": "latest"
+    "react-dom": "latest"
   },
   "scripts": {
-    "analyze": "vite-bundle-visualizer",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "prepublishOnly": "npm run build"
+    "analyze": "vite-bundle-visualizer"
   },
   "devDependencies": {
     "@types/react": "18.2.46",

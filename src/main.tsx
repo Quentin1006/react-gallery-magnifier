@@ -1,10 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { version, GalleryImage, ImageMagnifier, Title } from '.';
+import { version, GalleryImage, ImageMagnifier, Title } from '../lib';
 
-
-const assetServerUrl = process.env.ASSET_SERVER_URL;
+const assetServerUrl = process.env.__ASSET_SERVER_URL__;
 const App = () => {
   const gallery: GalleryImage[] = [
     /*{
@@ -91,6 +90,10 @@ const App = () => {
     </div>
   );
 };
+
+// const App = () => {
+//   return <div>Hello wolrd</div>;
+// };
 
 const root = createRoot(document.getElementById('root')!);
 
