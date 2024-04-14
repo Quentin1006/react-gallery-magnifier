@@ -1,19 +1,43 @@
 dist
 build
 
+# next.js
+/.next/
+/out/
+
+# misc
+.DS_Store
+*.pem
 compiled
 *.log
 coverage
-.DS_Store
-next.d.ts
 .idea
-
-node_modules
-
-.env
+.npmrc
 .vercel
+
+# dependencies
+/node_modules
+node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# env files
+.env*.local
+.env
+
+# testing
+/coverage
 /test-results/
 /playwright-report/
 /playwright/.cache/
 
-.npmrc
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+next.d.ts
