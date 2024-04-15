@@ -13,11 +13,12 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
     "analyze": "vite-bundle-visualizer",
-    "test": "vitest",
-    "assets:serve": "serve assets -p 8000 --cors"
+    "assets:serve": "serve assets -p 8000 --cors",
+    "build": "vite build",
+    "dev": "vite",
+    "docs:serve": "cd docs && npm run serve",
+    "test": "vitest"
   },
   "peerDependencies": {
     "react": "^18.2.0",

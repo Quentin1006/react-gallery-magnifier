@@ -2,8 +2,8 @@ dist
 build
 
 # next.js
-/.next/
-/out/
+.next/
+out/
 
 # misc
 .DS_Store
