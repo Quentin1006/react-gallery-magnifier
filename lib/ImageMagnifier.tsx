@@ -108,7 +108,7 @@ export function ImageMagnifier({
     const left = getLeft(e.clientX, WRAPPER_RECT, MAGNIFIER_WIDTH);
     const top = getTop(e.clientY, WRAPPER_RECT, MAGNIFIER_HEIGHT);
 
-    const right = left + MAGNIFIER_WIDTH;
+    // const right = left + MAGNIFIER_WIDTH;
     const bottom = top + MAGNIFIER_HEIGHT;
 
     // console.log({ left, top, right, bottom });

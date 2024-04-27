@@ -9,15 +9,16 @@ import { extname, relative } from 'node:path';
 import pkg from './package.json';
 
 // Should ignore dev.tsx, .spec.tsx, .test.tsx, tests/, .d.ts
-const filesToIgnore = /(\.spec\.|\.test\.|tests?\/|\.d\.ts$)/;
+// (\/|\\) is meant for windows to handle both / and \
+const filesToIgnore = /(\.spec\.|\.test\.|tests?(\/|\\)|\.d\.ts$)/;
 const input = Object.fromEntries(
   glob
     .sync('lib/**/*.{ts,tsx}')
+    .filter(file => !file.match(filesToIgnore))
     .map(l => {
       console.log(l);
       return l;
     })
-    .filter(file => !file.match(filesToIgnore))
     .map(file => [
       // The name of the entry point
       // src/nested/foo.ts becomes nested/foo
