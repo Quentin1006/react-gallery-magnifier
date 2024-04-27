@@ -1,11 +1,14 @@
 {
   "name": "react-gallery-magnifier",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
   "type": "module",
   "sideEffects": [
     "**/*.css"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
