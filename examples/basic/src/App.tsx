@@ -1,7 +1,13 @@
-import { version, ImageMagnifier, GalleryImage } from 'react-gallery-magnifier';
+import {
+  version,
+  ImageMagnifier,
+  GalleryImage,
+  BigComponent,
+} from 'react-gallery-magnifier';
 
 const assetServerUrl = process.env.__ASSET_SERVER_URL__;
 export const App = () => {
+  console.log(BigComponent());
   const gallery: GalleryImage[] = [
     /*{
       thumbnailSrc:
