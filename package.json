@@ -91,12 +91,6 @@
       "path": "dist/index.js",
       "import": "{ImageMagnifier}",
       "limit": "2kB"
-    },
-    {
-      "name": "import {BigComponent} from 'react-gallery-magnifier'",
-      "path": "dist/index.js",
-      "import": "{BigComponent}",
-      "limit": "50kB"
     }
   ]
 }
